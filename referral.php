@@ -94,7 +94,7 @@ tr:hover td {
       <label> Your Referral Points :</label>
         <input type="email" name="email" maxlength="50" placeholder="<?=$fetch_referral['referral_point'];?>" class="box" readonly>
       <label> Your Referral Url :</label>
-        <input type="text" name="number" min="0" max="9999999999" maxlength="11" id="myInput" value="http://127.0.0.1:8080/registerwifi/register.php?ref=<?= $fetch_referral['referral_code'];?>" class="box">
+        <input type="text" name="number" min="0" max="9999999999" maxlength="11" id="myInput" value="https://app.registerwifi.online/register.php?ref=<?= $fetch_referral['referral_code'];?>" class="box">
       <input type="submit" value="copy" name="submit" onclick="copy('myInput')" class="btn">
    </form>
 </section>
