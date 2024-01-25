@@ -120,14 +120,14 @@ if(isset($_POST['submit'])){
                      $_SESSION['email'] = $row['email'];
                      $_SESSION['otp'] = $row['otp'];
    
-                     header('location:index.php');
+                     header('location:index');
                      
                   }elseif($verification_status == "0"){
                      
                      $_SESSION['unique_id'] = $row['unique_id'];
                      $_SESSION['email'] = $row['email'];
                      $_SESSION['otp'] = $row['otp'];
-                     header('location:verify.php');
+                     header('location:verify');
                }
             }
          }

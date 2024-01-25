@@ -4,7 +4,7 @@
 
    <nav class="navbar nav-1">
       <section class="flex">
-         <a href="index.php#home" class="logo"><i class="fas fa-wifi"></i>RegisterWifi.Online</a>
+         <a href="index#home" class="logo"><i class="fas fa-wifi"></i>RegisterWifi.Online</a>
 
          <ul>
             <li><a href="#">submit form<i class="fas fa-paper-plane"></i></a></li>
@@ -20,16 +20,16 @@
             <ul>
                <li><a href="#">my form<i class="fas fa-angle-down"></i></a>
                   <ul>
-                     <li><a href="dashboard.php">dashboard</a></li>
+                     <li><a href="dashboard">dashboard</a></li>
                      <li><a href="#">submit form</a></li>
                      <li><a href="#">my form</a></li>
                   </ul>
                </li>
                <li><a href="#">help<i class="fas fa-angle-down"></i></a>
                   <ul>
-                     <li><a href="index.php#about">about</a></i></li>
-                     <li><a href="index.php#gallery">gallery</a></i></li>
-                     <li><a href="index.php#coverage">coverage</a></i></li>
+                     <li><a href="index#about">about</a></i></li>
+                     <li><a href="index#gallery">gallery</a></i></li>
+                     <li><a href="index#coverage">coverage</a></i></li>
                   </ul>
                </li>
             </ul>
@@ -44,15 +44,15 @@
                   if($select_profile->rowCount() > 0 ){
                      $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
                   ?>
-                   <li><a href="update_profile.php"><?= $fetch_profile['nama'] ;?></a></li>
+                   <li><a href="update_profile"><?= $fetch_profile['nama'] ;?></a></li>
                   <?php 
                    }else{
                   ?>        
-                  <li><a href="login.php">login now</a></li>
+                  <li><a href="login">login now</a></li>
                   <?php } ?>
                   <?php if($unique_id != ''){ ?>
-                  <li><a href="update_profile.php">update profile</a></li>
-                  <li><a href="components/user_logout.php" onclick="return confirm('logout from this website?');">logout</a>
+                  <li><a href="update_profile">update profile</a></li>
+                  <li><a href="components/user_logout" onclick="return confirm('logout from this website?');">logout</a>
                   <?php } ?></li>
                </ul>
             </li>

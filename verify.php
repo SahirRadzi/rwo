@@ -8,7 +8,7 @@ if(isset($_SESSION['unique_id'])){
     $unique_id = $_SESSION['unique_id'];
 }else{
     $unique_id = '';
-    header('location:index.php');
+    header('location:index');
 };
 
  if(isset($_POST['verify'])){
@@ -37,7 +37,7 @@ if(isset($_SESSION['unique_id'])){
                         $_SESSION['verification_status'] = $row['verification_status'];
                 
                         $success_msg[] = "success!";
-                        header('location:index.php');
+                        header('location:index');
                     }
                 }
             }

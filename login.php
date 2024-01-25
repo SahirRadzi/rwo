@@ -28,13 +28,13 @@ if(isset($_POST['submit'])){
 
       if($_SESSION['verification_status'] == "verified"){
          $_SESSION['unique_id'] = $row['unique_id'];
-         header('location:index.php');
+         header('location:index');
          
       }elseif($_SESSION['verification_status'] == "0"){
          $_SESSION['unique_id'] = $row['unique_id'];
          $_SESSION['email'] = $row['email'];
          $_SESSION['otp'] = $row['otp'];
-         header('location:verify.php');
+         header('location:verify');
       }
    }else{
       $warning_msg[] = 'incorrect username or password!';
@@ -77,7 +77,7 @@ if(isset($_POST['submit'])){
       <input type="password" name="pass" required maxlength="20" placeholder="enter your password" class="box">
       <!-- <div class="g-recaptcha" data-sitekey="6LdPUwspAAAAABPokUYN_brLXb6Ps4qWt5lRhBAl"></div> -->
       <p>forgot password ? click <a href="forgot_pass.php">here</a></p>
-      <p>don't have an account? <a href="register.php">register new</a></p>
+      <p>don't have an account? <a href="register">register new</a></p>
       <input type="submit" value="login now" name="submit" class="btn">
    </form>
 

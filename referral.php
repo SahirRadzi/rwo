@@ -8,7 +8,7 @@ if(isset($_SESSION['unique_id'])){
    $unique_id = $_SESSION['unique_id'];
 }else{
    $unique_id = '';
-   header('location:login.php');
+   header('location:login');
 };
 
 ?>

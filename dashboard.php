@@ -8,7 +8,7 @@ if(isset($_SESSION['unique_id'])){
    $unique_id = $_SESSION['unique_id'];
 }else{
    $unique_id = '';
-   header('location:login.php');
+   header('location:login');
 };
 
 ?>
@@ -85,7 +85,7 @@ if(isset($_SESSION['unique_id'])){
          $fetch_referral = $select_referral->fetch(PDO::FETCH_ASSOC);
       ?>
       <p><?= $fetch_referral['referral_code'];?></p>
-      <a href="referral.php" class="btn">view referral setting</a>
+      <a href="referral" class="btn">view referral setting</a>
       </div>
 
    </div>
