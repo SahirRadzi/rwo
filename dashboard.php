@@ -47,7 +47,7 @@ if(isset($_SESSION['unique_id'])){
      
       <h3>welcome!</h3>
       <p><?= $fetch_profile['nama']; ?></p>
-      <a href="update_profile.php" class="btn">update profile</a>
+      <a href="update_profile" class="btn">update profile</a>
       </div>
 
       <div class="box">
