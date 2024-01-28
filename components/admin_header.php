@@ -176,14 +176,23 @@ if(isset($message)){
               <span class="navlink">Award</span>
             </a>
           </li> -->
-          <li class="item">
-            <a href="#" class="nav_link">
+    
+             <!-- Products Menu - Start -->
+             <li class="item">
+            <div href="#" class="nav_link submenu_item">
               <span class="navlink_icon">
-                <i class="bx bx-cog"></i>
+                <i class='bx bx-cog'></i>
               </span>
               <span class="navlink">Setting</span>
-            </a>
+              <i class="bx bx-chevron-right arrow-left"></i>
+            </div>
+
+            <ul class="menu_items submenu">
+              <a href="#" class="nav_link sublink">Add Products</a>
+            </ul>
           </li>
+          <!-- Products Menu - end -->
+
           <li class="item">
             <a href="#" class="nav_link">
               <span class="navlink_icon">
