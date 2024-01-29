@@ -93,11 +93,11 @@ if(isset($_POST['update_status'])){
 if(isset($_POST['search_box']) OR isset($_POST['search_btn'])){
    $search_box = $_POST['search_box'];
    $search_box = filter_var($search_box, FILTER_SANITIZE_STRING);
-   $select_listings = $conn->prepare("SELECT * FROM `orders_list` WHERE status = 'Batal' AND unique_id LIKE '%{$search_box}%' AND nokp LIKE '%{$search_box}%'");
+   $select_listings = $conn->prepare("SELECT orders_list.id, orders_list.unique_id, orders_list.tarikh, orders_list.nama, orders_list.email, orders_list.phoneno, orders_list.nokp, orders_list.alamatPemasangan, orders_list.alamatBill, products.s_name, products.price, orders_list.tarikhWaktu, orders_list.signa_c, orders_list.imgBill, orders_list.imgKpD, orders_list.imgKpB, orders_list.status FROM orders_list INNER JOIN products ON orders_list.pid = products.id WHERE status = 'Batal' AND unique_id LIKE '%{$search_box}%' AND nokp LIKE '%{$search_box}%'");
    $select_listings->execute();
 }else
 
-$select_listings = $conn->prepare("SELECT * FROM `orders_list` WHERE status = 'Batal'");
+$select_listings = $conn->prepare("SELECT orders_list.id, orders_list.unique_id, orders_list.tarikh, orders_list.nama, orders_list.email, orders_list.phoneno, orders_list.nokp, orders_list.alamatPemasangan, orders_list.alamatBill, products.s_name, products.price, orders_list.tarikhWaktu, orders_list.signa_c, orders_list.imgBill, orders_list.imgKpD, orders_list.imgKpB, orders_list.status FROM orders_list INNER JOIN products ON orders_list.pid = products.id WHERE status = 'Batal'");
 $select_listings->execute();
 if($select_listings->rowCount() > 0){
    while($fetch_orders = $select_listings->fetch(PDO::FETCH_ASSOC)){
@@ -107,7 +107,7 @@ if($select_listings->rowCount() > 0){
 
    <div class="box-queue-number">unifi</div>
       <div class="box-queue">
-         <?= $fetch_orders['pakej']; ?>
+         <?= $fetch_orders['s_name']; ?>
       </div>
 
       <p><b>#<span><?= $fetch_orders['id'];?></p>

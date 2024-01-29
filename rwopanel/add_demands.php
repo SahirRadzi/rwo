@@ -20,7 +20,7 @@ if(isset($_POST['submit'])){
   $nokp = $_POST['nokp'];
   $alamatPemasangan = $_POST['alamatPemasangan'];
   $alamatBill = $_POST['alamatBill'];
-  $pakej = $_POST['pakej'];
+  $pid = $_POST['pid'];
   $tarikhWaktu = $_POST['tarikhWaktu'];
 
   $imgBill = $_FILES['imgBill']['name'];
@@ -77,8 +77,8 @@ if(isset($_POST['submit'])){
   }else{
       $rename_imgKpB = '';
     }
-    $insert_DemandsList = $conn->prepare("INSERT INTO `demand_list` (unique_id, email, nama, phoneno, phonenoTambahan, nokp, alamatPemasangan, alamatBill, pakej, tarikhWaktu, imgBill, imgKpD, imgKpB) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
-    $insert_DemandsList->execute([$unique_id, $email, $nama, $phoneno, $phonenoTambahan, $nokp, $alamatPemasangan, $alamatBill, $pakej, $tarikhWaktu, $rename_imgBill, $rename_imgKpD, $rename_imgKpB]);
+    $insert_DemandsList = $conn->prepare("INSERT INTO `demand_list` (unique_id, email, nama, phoneno, phonenoTambahan, nokp, alamatPemasangan, alamatBill, pid, tarikhWaktu, imgBill, imgKpD, imgKpB) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+    $insert_DemandsList->execute([$unique_id, $email, $nama, $phoneno, $phonenoTambahan, $nokp, $alamatPemasangan, $alamatBill, $pid, $tarikhWaktu, $rename_imgBill, $rename_imgKpD, $rename_imgKpB]);
     $message[] = 'new demands list added!';
 
 
@@ -160,7 +160,7 @@ if(isset($_POST['submit'])){
     color: red !important;
    }
 
-   .form :where(.input-box input, .select-box) {
+   .form :where(.input-box input, .input-box select, .select-box) {
   position: relative;
   height: 50px;
   width: 100%;
@@ -445,28 +445,27 @@ Baca & Fahamkan Terma & Syarat:
     </div>
   </div>
 
-  <div class="gender-box">
-    <h3>8. Pilih Pakej Unifi Terkini 2024</h3>
+  <div class="input-box">
+    <label>8. Pakej Unifi Terkini 2024</label>
     </br>
-    <div class="gender">
-      <input type="radio" value="U89" id="U89" name="pakej" required/>
-      <label for="U89">Pakej 100Mbps RM 89 Bulanan</label>
-    </div>
-    <br />
-    <div class="gender">
-      <input type="radio" value="U139" id="U139" name="pakej" required/>
-      <label for="U139">Pakej 300Mbps RM 139 Bulanan</label>
-    </div>
-    <br />
-    <div class="gender">
-      <input type="radio" value="U159" id="U159" name="pakej" required/>
-      <label for="U159">Pakej 500Mbps RM 159 Bulanan</label>
-    </div>
-    <br />
-    <div class="gender">
-      <input type="radio" value="U289" id="U289" name="pakej" required/>
-      <label for="U289">Pakej 1Gbps RM 289 Bulanan</label>
-    </div>
+
+      <select name="pid" class="box" required>
+         <option value="" disabled selected>Pilih Pakej Unifi Terkini--</option>
+
+         <?php 
+               $select_product = $conn->prepare("SELECT * FROM `products`");
+               $select_product->execute();
+                  while($result_product = $select_product->fetch(PDO::FETCH_ASSOC)){
+      
+         ?>
+
+<option value="<?= $result_product['id'];?>"><?= $result_product['name'];?></option>
+
+         <?php  
+            }  
+      ?>
+      </select>
+     
   </div>
 
   <div class="input-box">

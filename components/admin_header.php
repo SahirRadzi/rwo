@@ -188,7 +188,8 @@ if(isset($message)){
             </div>
 
             <ul class="menu_items submenu">
-              <a href="#" class="nav_link sublink">Add Products</a>
+              <a href="category.php" class="nav_link sublink">Add Category</a>
+              <a href="products.php" class="nav_link sublink">Add Products</a>
             </ul>
           </li>
           <!-- Products Menu - end -->

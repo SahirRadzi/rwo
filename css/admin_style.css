@@ -204,7 +204,7 @@ section {
   content: "Quick Apps";
 }
 .menu_setting::before {
-  content: "Setting Shops";
+  content: "Setting";
 }
 .sidebar.close .menu_title::before {
   content: "";

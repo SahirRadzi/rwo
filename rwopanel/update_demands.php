@@ -18,7 +18,7 @@ if(isset($_GET['update'])){
 };
 
 
-if(isset($_POST['update_list'])){
+if(isset($_POST['update_demands'])){
 
   $email = $_POST['email'];
   $email = filter_var($email, FILTER_SANITIZE_STRING);
@@ -57,7 +57,7 @@ if(isset($_POST['update_list'])){
     if($imgBill_size > 2000000){
        $message[] = 'Photo of billing size is to large!';
     }else{
-       $update_imgBill = $conn->prepare("UPDATE `orders_list` SET imgBill = ? WHERE id = ?");
+       $update_imgBill = $conn->prepare("UPDATE `demand_list` SET imgBill = ? WHERE id = ?");
        $update_imgBill->execute([$rename_imgBill, $update_id]);
        move_uploaded_file($imgBill_tmp_name, $imgBill_folder);
        if($old_imgBill != ''){
@@ -79,7 +79,7 @@ if(isset($_POST['update_list'])){
     if($imgKpD_size > 2000000){
        $message[] = 'Front Side of IC size is too large!';
     }else{
-       $update_imgKpD = $conn->prepare("UPDATE `orders_list` SET imgKpD = ? WHERE id = ?");
+       $update_imgKpD = $conn->prepare("UPDATE `demand_list` SET imgKpD = ? WHERE id = ?");
        $update_imgKpD->execute([$rename_imgKpD, $update_id]);
        move_uploaded_file($imgKpD_tmp_name, $imgKpD_folder);
        if($old_imgKpD != ''){
@@ -101,7 +101,7 @@ if(isset($_POST['update_list'])){
     if($imgKpB_size > 2000000){
        $message[] = 'Front Side of IC size is too large!';
     }else{
-       $update_imgKpB = $conn->prepare("UPDATE `orders_list` SET imgKpDB = ? WHERE id = ?");
+       $update_imgKpB = $conn->prepare("UPDATE `demand_list` SET imgKpDB = ? WHERE id = ?");
        $update_imgKpB->execute([$rename_imgKpB, $update_id]);
        move_uploaded_file($imgKpB_tmp_name, $imgKpB_folder);
        if($old_imgKpB != ''){
@@ -110,7 +110,7 @@ if(isset($_POST['update_list'])){
     }
  }
 
-    $update_listing = $conn->prepare("UPDATE `orders_list` SET email = ?, nama = ?, phoneno = ?, phonenoTambahan = ?, nokp = ?, alamatPemasangan = ?, alamatBill = ?, pid = ?, tarikhWaktu = ?, catatan = ? WHERE id = ? ");
+    $update_listing = $conn->prepare("UPDATE `demand_list` SET email = ?, nama = ?, phoneno = ?, phonenoTambahan = ?, nokp = ?, alamatPemasangan = ?, alamatBill = ?, pid = ?, tarikhWaktu = ?, catatan = ? WHERE id = ? ");
     $update_listing->execute([$email, $nama, $phoneno, $phonenoTambahan, $nokp, $alamatPemasangan, $alamatBill, $pid, $tarikhWaktu, $catatan, $update_id]);
 
     $message[] = 'listing updated successfully!';
@@ -121,7 +121,7 @@ if(isset($_POST['delete_imgBill'])){
 
   $old_imgBill = $_POST['old_imgBill'];
   $old_imgBill = filter_var($old_imgBill, FILTER_SANITIZE_STRING);
-  $update_imgBill = $conn->prepare("UPDATE `orders_list` SET imgBill = ? WHERE id = ?");
+  $update_imgBill = $conn->prepare("UPDATE `demand_list` SET imgBill = ? WHERE id = ?");
   $update_imgBill->execute(['', $update_id]);
   if($old_imgBill != ''){
      unlink('../uploaded_bill/'.$old_imgBill);
@@ -134,7 +134,7 @@ if(isset($_POST['delete_imgKpD'])){
 
   $old_imgKpD = $_POST['old_imgKpD'];
   $old_imgKpD = filter_var($old_imgKpD, FILTER_SANITIZE_STRING);
-  $update_imgKpD = $conn->prepare("UPDATE `orders_list` SET imgKpD = ? WHERE id = ?");
+  $update_imgKpD = $conn->prepare("UPDATE `demand_list` SET imgKpD = ? WHERE id = ?");
   $update_imgKpD->execute(['', $update_id]);
   if($old_imgKpD != ''){
      unlink('../uploaded_kpd/'.$old_imgKpD);
@@ -147,7 +147,7 @@ if(isset($_POST['delete_imgKpB'])){
 
   $old_imgKpB = $_POST['old_imgKpB'];
   $old_imgKpB = filter_var($old_imgKpB, FILTER_SANITIZE_STRING);
-  $update_imgKpB = $conn->prepare("UPDATE `orders_list` SET imgKpB = ? WHERE id = ?");
+  $update_imgKpB = $conn->prepare("UPDATE `demand_list` SET imgKpB = ? WHERE id = ?");
   $update_imgKpB->execute(['', $update_id]);
   if($old_imgKpB != ''){
      unlink('../uploaded_kpb/'.$old_imgKpB);
@@ -167,7 +167,7 @@ if(isset($_POST['delete_imgKpB'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update List | RWO Panel</title>
+    <title>Update Demands | RWO Panel</title>
 
      <!-- font awesome cdn link  -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -435,7 +435,7 @@ if(isset($_POST['delete_imgKpB'])){
 
 <section class="placed-orders">
 
-<h1 class="heading">update list</h1>
+<h1 class="heading">update demand list</h1>
 
 
 <header>Pendaftaran Unifi  | Baru
@@ -473,7 +473,7 @@ Baca & Fahamkan Terma & Syarat:
 
 <?php 
     $update_id = $_GET['update'];
-    $show_update_list = $conn->prepare("SELECT * FROM `orders_list` WHERE id = ?");
+    $show_update_list = $conn->prepare("SELECT * FROM `demand_list` WHERE id = ?");
     $show_update_list->execute([$update_id]);
     if($show_update_list->rowCount() > 0 ){
         while($fetch_updates = $show_update_list->fetch(PDO::FETCH_ASSOC)){
@@ -494,7 +494,20 @@ Baca & Fahamkan Terma & Syarat:
     <input type="hidden" name="old_imgKpB" value="<?= $fetch_updates['imgKpB'];?>">
   </div>
 
-
+<!-- <div class="signature-box">
+    <div class="sign-customer">
+    <label>Signature Customer :</label>
+    </br>
+    <div class="input-box">
+    <div class="img-box-sign">
+    <?php if(!empty($fetch_updates['signa_c'])){ ;?>
+        <img src="../uploaded_sign_c/<?= $fetch_updates['signa_c'];?> ">
+    <?php } ?>
+    </div>
+    </div>
+    
+    </div>
+</div> -->
 
 
   <div class="input-box">
@@ -544,7 +557,7 @@ Baca & Fahamkan Terma & Syarat:
 
         <?php 
           $update_id = $_GET['update'];
-          $grab = $conn->prepare("SELECT orders_list.pid, products.name FROM orders_list INNER JOIN products ON orders_list.pid = products.id WHERE orders_list.id = ?");
+          $grab = $conn->prepare("SELECT demand_list.pid, products.name FROM demand_list INNER JOIN products ON demand_list.pid = products.id WHERE demand_list.id = ?");
           $grab->execute([$update_id]);
           if($grab->rowCount() > 0){
             while($fetch_grab = $grab->fetch(PDO::FETCH_ASSOC)){
@@ -622,7 +635,7 @@ Baca & Fahamkan Terma & Syarat:
 
     
 
-  <button type="submit" name="update_list" class="btn-submit">Update</button>
+  <button type="submit" name="update_demands" class="btn-submit">Update</button>
 
 </form>
 
@@ -636,20 +649,6 @@ Baca & Fahamkan Terma & Syarat:
 
 
 </section>
-
-
-<!-- <script type="text/javascript">
-  var sign = $('#signa-c').signature({
-      syncField: '#signature-customer-64',
-      syncFormat: 'PNG'
-  });
-  $('#clear-c').click(function(e) {
-      e.preventDefault();
-      sign.signature('clear');
-      $("#signature-customer-64").val('');
-  });
-
-</script> -->
 
 <script src="../js/datetimepicker/jquery.js"></script>
 <script src="../js/datetimepicker/jquery.datetimepicker.full.min.js"></script>

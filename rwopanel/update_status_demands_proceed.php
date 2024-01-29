@@ -93,11 +93,11 @@ if(isset($_POST['update_status'])){
 if(isset($_POST['search_box']) OR isset($_POST['search_btn'])){
    $search_box = $_POST['search_box'];
    $search_box = filter_var($search_box, FILTER_SANITIZE_STRING);
-   $select_listings = $conn->prepare("SELECT * FROM `demand_list` WHERE status = 'Proses' AND unique_id LIKE '%{$search_box}%' AND nokp LIKE '%{$search_box}%'");
+   $select_listings = $conn->prepare("SELECT demand_list.id, demand_list.unique_id, demand_list.tarikh, demand_list.nama, demand_list.email, demand_list.phoneno, demand_list.nokp, demand_list.alamatPemasangan, demand_list.alamatBill, products.s_name, products.price, demand_list.tarikhWaktu, demand_list.signa_c, demand_list.imgBill, demand_list.imgKpD, demand_list.imgKpB, demand_list.status FROM demand_list INNER JOIN products ON demand_list.pid = products.id WHERE status = 'Proses' AND unique_id LIKE '%{$search_box}%' AND nokp LIKE '%{$search_box}%'");
    $select_listings->execute();
 }else
 
-$select_listings = $conn->prepare("SELECT * FROM `demand_list` WHERE status = 'Proses'");
+$select_listings = $conn->prepare("SELECT demand_list.id, demand_list.unique_id, demand_list.tarikh, demand_list.nama, demand_list.email, demand_list.phoneno, demand_list.nokp, demand_list.alamatPemasangan, demand_list.alamatBill, products.s_name, products.price, demand_list.tarikhWaktu, demand_list.signa_c, demand_list.imgBill, demand_list.imgKpD, demand_list.imgKpB, demand_list.status FROM demand_list INNER JOIN products ON demand_list.pid = products.id WHERE status = 'Proses'");
 $select_listings->execute();
 if($select_listings->rowCount() > 0){
    while($fetch_orders = $select_listings->fetch(PDO::FETCH_ASSOC)){
@@ -107,7 +107,7 @@ if($select_listings->rowCount() > 0){
 
    <div class="box-queue-number">unifi</div>
       <div class="box-queue">
-         <?= $fetch_orders['pakej']; ?>
+         <?= $fetch_orders['s_name']; ?>
       </div>
 
       <p><b>#<span><?= $fetch_orders['id'];?></p>
@@ -134,7 +134,7 @@ if($select_listings->rowCount() > 0){
          </select>
          <div class="flex-btn">
             <input type="submit" value="update status" class="btn" name="update_status">
-            <a href="update_list.php?update=<?=$fetch_orders['id'];?>" class="btn">update all</a>
+            <a href="update_demands.php?update=<?=$fetch_orders['id'];?>" class="btn">update all</a>
            
          </div>
          <a href="view_details.php?view=<?= $fetch_orders['id'];?>" class="view-btn">Views</a>
