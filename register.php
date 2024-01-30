@@ -30,6 +30,15 @@ if(isset($_SESSION['unique_id'])){
 
 if(isset($_GET['ref'])){
    $refer_code = $_GET['ref'];
+
+   $sql = $conn->prepare("SELECT * FROM `user` WHERE referral_code = ?");
+   $sql->execute([$refer_code]);
+
+   if($sql->rowCount() > 0){
+      $count_click = $conn->prepare("UPDATE `user` SET click = click+1 WHERE referral_code = ?");
+      $count_click->execute([$refer_code]);
+   }
+
 }else{
    $refer_code = 0;
 }
@@ -68,8 +77,12 @@ if(isset($_POST['submit'])){
          $verification_status = '0';
          $rand_otp = create_verify_code();
 
-         $insert_user = $conn->prepare("INSERT INTO `user`(unique_id, nama, number, email, password, otp, verification_status, referral_code, referral_point, refer_code) VALUES(?,?,?,?,?,?,?,?,?,?)");
-         $insert_user->execute([$uid, $name, $number, $email, $c_pass, $rand_otp, $verification_status, $referral_code, $referral_point, $refer_code]);
+         $insert_user = $conn->prepare("INSERT INTO `user`(unique_id, nama, number, email, password, otp, verification_status, referral_code, refer_code) VALUES(?,?,?,?,?,?,?,?,?)");
+         $insert_user->execute([$uid, $name, $number, $email, $c_pass, $rand_otp, $verification_status, $referral_code, $refer_code]);
+
+         
+
+
 
       //Create instance of PHPMailer
 	   $mail = new PHPMailer();

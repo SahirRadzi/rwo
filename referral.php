@@ -91,8 +91,8 @@ tr:hover td {
       <h3>Referral Setting!</h3>
       <label> Your Referral Code :</label>
         <input type="text" name="referralcode" maxlength="50" placeholder="<?=$fetch_referral['referral_code'];?>" class="box" readonly>
-      <label> Your Referral Points :</label>
-        <input type="email" name="email" maxlength="50" placeholder="<?=$fetch_referral['referral_point'];?>" class="box" readonly>
+      <label> Your Referral Click :</label>
+        <input type="email" name="email" maxlength="50" placeholder="<?=$fetch_referral['click'];?>" class="box" readonly>
       <label> Your Referral Url :</label>
         <input type="text" name="number" min="0" max="9999999999" maxlength="11" id="myInput" value="http://127.0.0.1:8080/registerwifi/register?ref=<?= $fetch_referral['referral_code'];?>" class="box">
       <input type="submit" value="copy" name="submit" onclick="copy('myInput')" class="btn">
