@@ -157,7 +157,7 @@ if(isset($_SESSION['unique_id'])){
          </div>
       <div class="box">
          <p>5. Nombor K/P <span class="wrong">*</span></p>
-         <input type="number" name="phonenoTambahan" maxlength="12" required placeholder="Contoh: 01133165639" class="input">
+         <input type="number" name="phonenoTambahan" maxlength="12" required placeholder="Contoh: 93110408****" class="input">
          </div>
       <div class="box">
          <p>6. Alamat Penuh Pemasangan <span class="wrong">*</span></p>
