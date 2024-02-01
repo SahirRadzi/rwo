@@ -167,25 +167,29 @@ if(isset($_SESSION['unique_id'])){
          <p>7. Alamat S/Menyurat <span class="wrong">*</span></p>
          <textarea name="alamatPemasangan" class="input" required cols="30" rows="5" placeholder="Isi Alamat Pemasangan"></textarea>
       </div>
-        <div class="box">
-         <p>8. Pilih Pakej Unifi Terkini 2024 <span class="wrong">*</span></p>
-         <div class="gender">
-            <input type="radio" value="U89" id="U89" name="pakej">
-            <label for="U89">Pakej 100Mbps RM 89 Bulanan</label>
-         </div>
-         <div class="gender">
-            <input type="radio" value="U139" id="U139" name="pakej">
-            <label for="U139">Pakej 300Mbps RM 139 Bulanan</label>
-         </div>
-         <div class="gender">
-            <input type="radio" value="U159" id="U159" name="pakej">
-            <label for="U159">Pakej 500Mbps RM 159 Bulanan</label>
-         </div>
-         <div class="gender">
-            <input type="radio" value="U289" id="U289" name="pakej">
-            <label for="U289">Pakej 1Gbps RM 289 Bulanan</label>
-         </div>
-        </div>
+     
+
+      <div class="box">
+    <p>8. Pakej Unifi Terkini 2024</p>
+
+      <select name="pid" required class="input">
+         <option value="" disabled selected>Pilih Pakej Unifi Terkini--</option>
+
+         <?php 
+               $select_product = $conn->prepare("SELECT * FROM `products`");
+               $select_product->execute();
+                  while($result_product = $select_product->fetch(PDO::FETCH_ASSOC)){
+      
+         ?>
+
+        <option value="<?= $result_product['id'];?>"><?= $result_product['name'];?></option>
+
+         <?php  
+            }  
+      ?>
+      </select>
+     
+  </div>
 
         <div class="box">
          <p>9. Tarikh & Waktu Pemasangan Unifi <span class="wrong">*</span></p>
