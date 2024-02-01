@@ -19,7 +19,7 @@ if(isset($_SESSION['unique_id'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Dashboard | RegisterWifi.Online</title>
+   <title>Referral Program | RegisterWifi.Online</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
@@ -34,7 +34,7 @@ if(isset($_SESSION['unique_id'])){
 
 <section class="dashboard">
 
-   <h1 class="heading">dashboard</h1>
+   <h1 class="heading">referral program</h1>
 
    <div class="box-container">
 
@@ -43,6 +43,7 @@ if(isset($_SESSION['unique_id'])){
          $select_profile = $conn->prepare("SELECT * FROM `user` WHERE unique_id = ? LIMIT 1");
          $select_profile->execute([$unique_id]);
          $fetch_profile = $select_profile->fetch(PDO::FETCH_ASSOC);
+            $myreferral = $fetch_profile['referral_code'];
       ?>
      
       <h3>welcome!</h3>
@@ -51,41 +52,50 @@ if(isset($_SESSION['unique_id'])){
       </div>
 
       <div class="box">
-         <h3>Coming Soon</h3>
-         <p>your referral points</p>
-         <a href="#" class="btn">view referral points</a>
+        
+      <h3>Terma & Syarat</h3>
+      <p>sila baca & fahamkan</p>
+   
+      <a href="#" class="btn">view terms & conditions</a>
       </div>
 
       <div class="box">
       
-      <h3>Coming Soon</h3>
-      <p>your claim points</p>
-      <a href="#" class="btn">view claim points</a>
+      <h3>Report Transaction</h3>
+      <p>your report transaction</p>
+      <a href="#" class="btn">view report transaction</a>
       </div>
 
       <div class="box">
      
-      <h3>Coming Soon</h3>
-      <p>your request claim</p>
-      <a href="#" class="btn">view request claim</a>
+      <h3>Withdrawal</h3>
+      <p>your withdrawal transaction</p>
+      <a href="#" class="btn">view withdrawal</a>
       </div>
 
       <div class="box">
+      <?php
+        $total_prsonRefer = 0; 
+        $count_personRefer = $conn->prepare("SELECT * FROM `user` WHERE refer_code = ?");
+        $count_personRefer->execute([$myreferral]);
+        $total_prsonRefer = $count_personRefer->rowCount();
+    
+      ?>
       
-      <h3>Coming Soon</h3>
-      <p>your complete claim</p>
-      <a href="#" class="btn">view complete claim</a>
+      <h3>Person Refer You</h3>
+      <p><?= $total_prsonRefer;?></p>
+      <a href="referral" class="btn">view person refer</a>
       </div>
 
       <div class="box">
-      <h3>referral Program</h3>
+      <h3>referral Setting</h3>
       <?php
          $select_referral = $conn->prepare("SELECT * FROM `user` WHERE unique_id = ? LIMIT 1");
          $select_referral->execute([$unique_id]);
          $fetch_referral = $select_referral->fetch(PDO::FETCH_ASSOC);
       ?>
       <p><?= $fetch_referral['referral_code'];?></p>
-      <a href="referral_program" class="btn">view referral program</a>
+      <a href="referral" class="btn">view referral setting</a>
       </div>
 
    </div>
