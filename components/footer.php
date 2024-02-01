@@ -5,7 +5,7 @@
    <section class="flex">
 
       <div class="box">
-         <a href="https://api.whatsapp.com/send?phone=601110685733&text=Pertanyaan...Register%20Wifi%20Online"><i class="fas fa-phone"></i><span>+601110685733</span></a>
+         <a href="https://api.whatsapp.com/send?phone=60175228573&text=Pertanyaan...Register%20Wifi%20Online"><i class="fas fa-phone"></i><span>+60175228573</span></a>
          <a href="https://api.whatsapp.com/send?phone=601133165639&text=Pertanyaan...Register%20Wifi%20Online"><i class="fas fa-phone"></i><span>+601133165639</span></a>
          <a href="#"><i class="fas fa-envelope"></i><span>registerwifionline@gmail.com</span></a>
          <a href="#"><i class="fas fa-map-marker-alt"></i><span>Seri Manjung Perak.</span></a>
