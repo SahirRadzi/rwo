@@ -1343,7 +1343,7 @@ a.btn-whatsapp:hover {
 .my-listings .box-container .box .thumb img {
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .my-listings .box-container .box .thumb p {

@@ -11,6 +11,79 @@ if(isset($_SESSION['unique_id'])){
    header('location:login');
 };
 
+if(isset($_POST['submit'])){
+
+   $unique_id = $_SESSION['unique_id'];
+   $email = $_POST['email'];
+   $nama = $_POST['nama'];
+   $phoneno = $_POST['phoneno'];
+   $phonenoTambahan = $_POST['phonenoTambahan'];
+   $nokp = $_POST['nokp'];
+   $alamatPemasangan = $_POST['alamatPemasangan'];
+   $alamatBill = $_POST['alamatBill'];
+   $pid = $_POST['pid'];
+   $tarikhWaktu = $_POST['tarikhWaktu'];
+ 
+   $imgBill = $_FILES['imgBill']['name'];
+   $imgBill = filter_var($imgBill, FILTER_SANITIZE_STRING);
+   $imgBill_ext = pathinfo($imgBill, PATHINFO_EXTENSION);
+   $rename_imgBill = create_unique_id().'.'.$imgBill_ext;
+   $imageBill_tmp_name = $_FILES['imgBill']['tmp_name'];
+   $imageBill_size = $_FILES['imgBill']['size'];
+   $imageBill_folder = '../uploaded_bill/'.$rename_imgBill;
+ 
+   if(!empty($imgBill)){
+     if($imageBill_size > 2000000){
+       $message[] = 'Size Gambar Bill terlalu besar!';
+     }else{
+       move_uploaded_file($imageBill_tmp_name, $imageBill_folder);
+     }
+   }else{
+     $rename_imgBill = '';
+   }
+ 
+   $imgKpD = $_FILES['imgKpD']['name'];
+   $imgKpD = filter_var($imgKpD, FILTER_SANITIZE_STRING);
+   $imgKpD_ext = pathinfo($imgKpD, PATHINFO_EXTENSION);
+   $rename_imgKpD = create_unique_id().'.'.$imgKpD_ext;
+   $imageKpD_tmp_name = $_FILES['imgKpD']['tmp_name'];
+   $imageKpD_size = $_FILES['imgKpD']['size'];
+   $imageKpD_folder = '../uploaded_kpd/'.$rename_imgKpD;
+ 
+   if(!empty($imgKpD)){
+     if($imageKpD_size > 2000000){
+       $message[] = 'Front Side of IC size is too large!';
+     }else{
+       move_uploaded_file($imageKpD_tmp_name, $imageKpD_folder);
+     }
+   }else{
+     $rename_imgKpD = '';
+   }
+ 
+ 
+   $imgKpB = $_FILES['imgKpB']['name'];
+   $imgKpB = filter_var($imgKpB, FILTER_SANITIZE_STRING);
+   $imgKpB_ext = pathinfo($imgKpB, PATHINFO_EXTENSION);
+   $rename_imgKpB = create_unique_id().'.'.$imgKpB_ext;
+   $imageKpB_tmp_name = $_FILES['imgKpB']['tmp_name'];
+   $imageKpB_size = $_FILES['imgKpB']['size'];
+   $imageKpB_folder = '../uploaded_kpb/'.$rename_imgKpB;
+ 
+     if(!empty($imgKpB)){
+       if($imageKpB_size > 2000000){
+        $message[] = 'Back Side of IC size is too large!';
+     }else{
+       move_uploaded_file($imageKpB_tmp_name, $imageKpB_folder);
+     }
+   }else{
+       $rename_imgKpB = '';
+     }
+     $insert_addList = $conn->prepare("INSERT INTO `orders_list` (unique_id, email, nama, phoneno, phonenoTambahan, nokp, alamatPemasangan, alamatBill, pid, tarikhWaktu, imgBill, imgKpD, imgKpB) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+     $insert_addList->execute([$unique_id, $email, $nama, $phoneno, $phonenoTambahan, $nokp, $alamatPemasangan, $alamatBill, $pid, $tarikhWaktu, $rename_imgBill, $rename_imgKpD, $rename_imgKpB]);
+     $message[] = 'your submit form successfull!';
+ 
+   }
+
 ?>
 
 <!DOCTYPE html>
@@ -153,11 +226,11 @@ if(isset($_SESSION['unique_id'])){
          </div>
       <div class="box">
          <p>4. Nombor Telefon Tambahan <span class="wrong">*</span></p>
-         <input type="number" name="phoneno" maxlength="12" required placeholder="Contoh: 01133165639" class="input">
+         <input type="number" name="phonenoTambahan" maxlength="12" required placeholder="Contoh: 01133165639" class="input">
          </div>
       <div class="box">
          <p>5. Nombor K/P <span class="wrong">*</span></p>
-         <input type="number" name="phonenoTambahan" maxlength="12" required placeholder="Contoh: 93110408****" class="input">
+         <input type="number" name="nokp" maxlength="12" required placeholder="Contoh: 93110408****" class="input">
          </div>
       <div class="box">
          <p>6. Alamat Penuh Pemasangan <span class="wrong">*</span></p>
@@ -165,14 +238,14 @@ if(isset($_SESSION['unique_id'])){
       </div>
       <div class="box">
          <p>7. Alamat S/Menyurat <span class="wrong">*</span></p>
-         <textarea name="alamatPemasangan" class="input" required cols="30" rows="5" placeholder="Isi Alamat Pemasangan"></textarea>
+         <textarea name="alamatBill" class="input" required cols="30" rows="5" placeholder="Isi Alamat Pemasangan"></textarea>
       </div>
      
 
       <div class="box">
     <p>8. Pakej Unifi Terkini 2024</p>
 
-      <select name="pid" required class="input">
+      <select name="pid" required class="input" required>
          <option value="" disabled selected>Pilih Pakej Unifi Terkini--</option>
 
          <?php 
@@ -211,7 +284,7 @@ if(isset($_SESSION['unique_id'])){
             <input type="file" name="imgKpB" class="input" accept="image/jpg, image/jpeg, image/png, image/webp" required>
          </div>
 
-      <input type="submit" value="Submit Form" class="btn" name="post">
+      <input type="submit" value="Submit Form" class="btn" name="submit">
    </form>
 
 </section>

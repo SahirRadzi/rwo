@@ -428,7 +428,7 @@ Baca & Fahamkan Terma & Syarat:
   <div class="input-box">
     <label>5. Nombor K/P <span>*</span></label>
     <div class="select-mobile">
-      <input type="number" name="nokp" placeholder="Contoh: 931104086159" min="0" max="999999999999" maxlength="12" required />
+      <input type="number" name="nokp" placeholder="Contoh: 93110408****" min="0" max="999999999999" maxlength="12" required />
     </div>
   </div>
 

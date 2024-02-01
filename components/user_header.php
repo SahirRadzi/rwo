@@ -1,3 +1,16 @@
+<?php
+if(isset($message)){
+   foreach($message as $message){
+      echo '
+      <div class="message">
+         <span>'.$message.'</span>
+         <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+      </div>
+      ';
+   }
+}
+?>
+
 <!-- header section starts  -->
 
 <header class="header">
@@ -22,7 +35,7 @@
                   <ul>
                      <li><a href="dashboard">dashboard</a></li>
                      <li><a href="submit_form">submit form</a></li>
-                     <li><a href="#">my form</a></li>
+                     <li><a href="my_form">my form</a></li>
                   </ul>
                </li>
                <li><a href="#">help<i class="fas fa-angle-down"></i></a>
