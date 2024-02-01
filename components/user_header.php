@@ -7,7 +7,7 @@
          <a href="index#home" class="logo"><i class="fas fa-wifi"></i>RegisterWifi.Online</a>
 
          <ul>
-            <li><a href="#">submit form<i class="fas fa-paper-plane"></i></a></li>
+            <li><a href="submit_form">submit form<i class="fas fa-paper-plane"></i></a></li>
          </ul>
       </section>
    </nav>
@@ -21,7 +21,7 @@
                <li><a href="#">my form<i class="fas fa-angle-down"></i></a>
                   <ul>
                      <li><a href="dashboard">dashboard</a></li>
-                     <li><a href="#">submit form</a></li>
+                     <li><a href="submit_form">submit form</a></li>
                      <li><a href="#">my form</a></li>
                   </ul>
                </li>
