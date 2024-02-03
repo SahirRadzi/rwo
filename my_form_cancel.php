@@ -69,7 +69,7 @@ if(isset($_SESSION['unique_id'])){
    <?php
          }
       }else{
-         echo '<p class="empty">no completed form! <a href="submit_form" style="margin-top:1.5rem;" class="btn">add new</a></p>';
+         echo '<p class="empty">no cancel form! <a href="submit_form" style="margin-top:1.5rem;" class="btn">add new</a></p>';
       }
       ?>
    
