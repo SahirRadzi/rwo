@@ -131,6 +131,7 @@ if($select_listings->rowCount() > 0){
             <option value="Baru">Baru</option>
             <option value="Batal">Batal</option>
             <option value="Proses">Proses</option>
+            <option value="Selesai">Selesai</option>
          </select>
          <div class="flex-btn">
             <input type="submit" value="update status" class="btn" name="update_status">

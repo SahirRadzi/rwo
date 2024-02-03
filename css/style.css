@@ -1161,14 +1161,28 @@ a.btn-whatsapp:hover {
   text-decoration: underline;
 }
 
-.dashboard .box-container {
+.referral-program .box-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, 35rem);
   gap: 1.5rem;
   justify-content: center;
   align-items: flex-start;
 }
+.dashboard .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 50rem);
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: flex-start;
+}
 
+.referral-program .box-container .box {
+  background-color: var(--white);
+  box-shadow: var(--box-shodow);
+  padding: 2rem;
+  text-align: center;
+  overflow-x: hidden;
+}
 .dashboard .box-container .box {
   background-color: var(--white);
   box-shadow: var(--box-shodow);
@@ -1177,12 +1191,26 @@ a.btn-whatsapp:hover {
   overflow-x: hidden;
 }
 
+.referral-program .box-container .box h3 {
+  font-size: 2.5rem;
+  color: var(--black);
+  text-transform: capitalize;
+}
 .dashboard .box-container .box h3 {
   font-size: 2.5rem;
   color: var(--black);
   text-transform: capitalize;
 }
 
+.referral-program .box-container .box p {
+  margin: 1.5rem 0;
+  font-size: 1.6rem;
+  background-color: var(--light-bg);
+  padding: 1.5rem;
+  color: var(--light-color);
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
 .dashboard .box-container .box p {
   margin: 1.5rem 0;
   font-size: 1.6rem;

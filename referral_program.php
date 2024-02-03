@@ -32,7 +32,7 @@ if(isset($_SESSION['unique_id'])){
    
 <?php include 'components/user_header.php'; ?>
 
-<section class="dashboard">
+<section class="referral-program">
 
    <h1 class="heading">referral program</h1>
 

@@ -51,31 +51,19 @@ if(isset($_SESSION['unique_id'])){
       </div>
 
       <div class="box">
-         <h3>Coming Soon</h3>
-         <p>your referral points</p>
-         <a href="#" class="btn">view referral points</a>
+         <h3>Completed Form</h3>
+         <p>your completed form</p>
+         <a href="my_form_completed.php" class="btn">view completed form</a>
       </div>
 
       <div class="box">
       
-      <h3>Coming Soon</h3>
-      <p>your claim points</p>
-      <a href="#" class="btn">view claim points</a>
+      <h3>Cancel Form</h3>
+      <p>your cancel form</p>
+      <a href="my_form_cancel" class="btn">view cancel form</a>
       </div>
 
-      <div class="box">
-     
-      <h3>Coming Soon</h3>
-      <p>your request claim</p>
-      <a href="#" class="btn">view request claim</a>
-      </div>
-
-      <div class="box">
-      
-      <h3>Coming Soon</h3>
-      <p>your complete claim</p>
-      <a href="#" class="btn">view complete claim</a>
-      </div>
+    
 
       <div class="box">
       <h3>referral Program</h3>
